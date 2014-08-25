@@ -1,161 +1,113 @@
 class Role(object):
 
-    def __init__(self, health, magic, choice):
+    def __init__(self, health, name, job, weapon, title, magic):
         self.health = health
+        self.name = name
+        self.job = job
+        self.weapon = weapon
+        self.title = title
         self.magic = magic
-        self.choice = choice
 
 class Warrior(Role):
-    weapon = 'shield'
-    title = 'The Brave'
+    attack = 'Sheild Slam'
 
     def __init__(self):
-        super(Warrior, self).__init__(200, 50,  0)
+        super(Warrior, self).__init__(
+                200,
+                'Brothgar',
+                'Warrior',
+                'shield',
+                'The Brave',
+                50)
 
 
 class Priest(Role):
-    weapon = 'staff'
-    title = 'The Healing'
+    spell = 'Heal'
 
     def __init__(self):
-        super(Priest, self).__init__(100, 200, 0)
+        super(Priest, self).__init__(
+                100,
+                'Alinia',
+                'Priest',
+                'staff',
+                'The Healing',
+                200)
 
 class Rouge(Role):
-    weapon = 'daggers'
-    title = 'The Quick'
+    attack = 'Strike'
 
     def __init__(self):
-        super(Rouge, self).__init__(150, 30, 0)
+        super(Rouge, self).__init__(
+                150,
+                'Granzine',
+                'Rouge',
+                'daggers',
+                'The Quick',
+                30)
 
 class Hunter(Role):
-    weapon = 'bow'
-    title = 'The Swift'
+    attack = 'Deathblow'
 
     def __init__(self):
-        super(Hunter, self).__init__(125, 100, 0)
+        super(Hunter, self).__init__(
+                125,
+                'Callamine',
+                'Hunter',
+                'bow',
+                'The Swift',
+                100)
+
+class Familiar(Role):
+    attack = 'Swipe'
+    animal = 'panther'
 
 
-def role_selection():
-
-    warrior = Warrior()
-    priest = Priest()
-    rouge = Rouge()
-    hunter = Hunter()
-
-    roles = [warrior, priest, rouge, hunter]
-
-    print "What class is best for you?"
-    prot = raw_input("Do you like protecting your friends? (y/n) => ")
-    if prot.lower() == 'y':
-        warrior.choice += 1
-        priest.choice += 2
-
-    max_choice = 0
-
-    for role in roles:
-        if role.choice > max_choice:
-            max_choice = role.choice
-
-    return [r for r in roles if r.choice == max_choice][0]
-
-    # elif prot == 'no' or prot == 'No':
-    #     Rouge.choice += 1
-    # else:
-    #     print "Fine, don't answer."
-    #     Hunter.choice += 2
-
-    # print "Do you like being a leader?"
-    # lead = raw_input()
-    # if lead == 'yes' or lead == 'Yes':
-    #     Warrior.choice += 1
-    # elif lead == 'no' or lead == 'No':
-    #     Hunter.choice += 1
-    # else:
-    #     print "Fine, don't answer."
-
-    # print "Do you like being in the backgRound?"
-    # back = raw_input()
-    # if back == 'yes' or back == 'Yes':
-    #     Rouge.choice += 1
-    #     Hunter.choice += 2
-    # elif back == 'no' or back == 'No':
-    #     Priest.choice += 1
-    # else:
-    #     print "Fine, don't answer."
-
-    # print "Do you like dealing damage up close?"
-    # close = raw_input()
-    # if close == 'yes' or close == 'Yes':
-    #     Rouge.choice += 1
-    #     Warrior.choice += 1
-    # elif close == 'no' or close == 'No':
-    #     Hunter.choice += 1
-    #     Priest.choice += 1
-    # else:
-    #     print "Fine, don't answer."
+    def __init__(self):
+        super(Familiar, self).__init__(
+                200,
+                'Gwen',
+                'Familiar',
+                'claws',
+                'The Loyal',
+                25)
 
 
-    # print "Far away?"
-    # distance = raw_input()
-    # if distance == 'yes' or distance == 'Yes':
-    #     Hunter.choice += 2
-    #     Priest.choice += 1
-    # elif distance == 'no' or distance == 'No':
-    #     Rouge.choice += 1
-    #     Warrior.choice += 1
-    # else:
-    #     print "Fine, don't answer."
-    #     Warrior.choice += 1
+questions = [
+    ("Do you like protecting your friends? (y/n) => "),
+    ("Do you like being a leader? (y/n) => "),
+    ("Do you like being in the background? (y/n) => "),
+    ('Do you like dealing damage up close? (y/n) => '),
+    ('Far away? (y/n) => '),
+    ("Do you like working alone? (y/n) => "),
+    ('Do you like melee? (y/n) => '),
+    ('Ranged? (y/n) => ')
+]
 
-    # print "Do you like working alone?"
-    # alone = raw_input()
-    # if alone == 'yes' or alone == 'Yes':
-    #     Rouge.choice += 2
-    #     Hunter.choice += 1
-    #     Warrior.choice -= 1
-    # elif alone == 'no' or alone == 'No':
-    #     Priest.choice += 2
-    # else:
-    #     print "Fine, don't answer."
-        
-    # print "Do you like wearing heavy, medium or light armor?"
-    # armor = raw_input()
-    # if armor == 'heavy' or armor == 'Heavy':
-    #     Warrior.choice += 3
-    # elif armor == 'medium' or armor == 'Medium':
-    #     Rouge.choice += 3
-    #     Hunter.choice += 3
-    # else:
-    #     Priest.choice += 3
+    
+def ask_question(questions):
+    number = 0
+    for q in questions:
+        answer = raw_input(q)
+        if answer.lower() == 'y':
+            number += 1
 
-    # print "Do you like swords, magic or bows?"
-    # weapon = raw_input()
-    # if weapon == 'swords' or weapon == 'Swords' or weapon == 'sword' or weapon == 'Sword':
-    #     Warrior.choice += 2
-    #     Rouge.choice += 2
-    # elif weapon == 'magic' or weapon == 'Magic':
-    #     Priest.choice += 2
-    # else:
-    #     Hunter.choice += 2
+    return number
 
-    # # Going to implement later
-    # #print "What is your favorite color?"
-    # #color = raw_input()
+number = ask_question(questions)
 
-    # role = {'Warrior': Warrior.choice, 'Priest': Priest.choice, 'Hunter': Hunter, 'Rouge': Rouge}
+if number <= 3:
+    role = Priest()
+    partner = Rouge()
+elif number <= 5:
+    role = Rouge()
+    partner = Priest()
+elif number <=7:
+    role = Hunter()
+    partner = Familiar()
+else:
+    role = Warrior()
+    partner = Priest()
 
-    # character =  max(role.iteritems(), key=operator.itemgetter(1))[0]
 
-    # character = character.capitalize() 
-
-    # print "Your class is " + character
-
-    # print "What would you like to name your class?"
-    # name = raw_input().capitalize()
-
-    # print "\n" +  name + " the " + character.title
-
-#print Role['Warrior']
-#print Role['Rouge']
-#print Role['Priest']
-#print Role['Hunter']
+print "Your name is %s, you are a %s and use a %s" % (role.name, role.job, role.weapon)
+print "Your party member's name is %s, a %s" %  (partner.name, partner.job)
