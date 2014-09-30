@@ -20,7 +20,6 @@ class Warrior(Role):
                 'The Brave',
                 50)
 
-
 class Priest(Role):
     spell = 'Heal'
 
@@ -70,44 +69,3 @@ class Familiar(Role):
                 'claws',
                 'The Loyal',
                 25)
-
-
-questions = [
-    ("Do you like protecting your friends? (y/n) => "),
-    ("Do you like being a leader? (y/n) => "),
-    ("Do you like being in the background? (y/n) => "),
-    ('Do you like dealing damage up close? (y/n) => '),
-    ('Far away? (y/n) => '),
-    ("Do you like working alone? (y/n) => "),
-    ('Do you like melee? (y/n) => '),
-    ('Ranged? (y/n) => ')
-]
-
-    
-def ask_question(questions):
-    number = 0
-    for q in questions:
-        answer = raw_input(q)
-        if answer.lower() == 'y':
-            number += 1
-
-    return number
-
-number = ask_question(questions)
-
-if number <= 3:
-    role = Priest()
-    partner = Rouge()
-elif number <= 5:
-    role = Rouge()
-    partner = Priest()
-elif number <=7:
-    role = Hunter()
-    partner = Familiar()
-else:
-    role = Warrior()
-    partner = Priest()
-
-
-print "Your name is %s, you are a %s and use a %s" % (role.name, role.job, role.weapon)
-print "Your party member's name is %s, a %s" %  (partner.name, partner.job)
