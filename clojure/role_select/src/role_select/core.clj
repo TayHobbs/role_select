@@ -12,8 +12,14 @@
     "Ranged? (y/n) => "])
 
 (defn print-questions [questions]
-  (doseq [question questions]
-    (println question)))
+  (reduce (fn [answer question]
+    (println question)
+    (if (= "y" (read-line))
+      (inc answer)
+          answer))
+          0
+          questions))
 
 (defn -main [& args]
-  (print-questions questions))
+  (let [number (print-questions questions)]
+    (println number)))
