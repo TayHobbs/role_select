@@ -1,6 +1,15 @@
 (ns role-select.core
   (:gen-class))
 
+(def Warrior
+  {:name "Brothgar" :role "Warrior" :weapon "Shield"})
+
+(def Priest
+  {:name "Alinia" :role "Priest" :weapon "Staff"})
+
+(def Rouge
+  {:name "Granzine" :role "Rouge" :weapon "Daggers"})
+
 (def questions
     ["Do you like protecting your friends? (y/n) => "
     "Do you like being a leader? (y/n) => "
