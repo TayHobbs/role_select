@@ -29,6 +29,17 @@
           0
           questions))
 
+(defn set-role [number]
+  (if (<= number 3)
+    (let [role "Priest"]
+      role)
+    (if (<= number 5)
+      (let [role "Rouge"]
+        role)
+      (let [role "Warrior"]
+        role))))
+
 (defn -main [& args]
   (let [number (print-questions questions)]
-    (println number)))
+    (let [role (set-role number)]
+      (println role))))
