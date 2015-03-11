@@ -31,21 +31,36 @@
 
 (defn suggest-role [number]
   (if (<= number 3)
-    (let [role "Priest"]
+    (let [role Priest]
        role)
     (if (<= number 5)
-      (let [role "Rouge"]
+      (let [role Rouge]
          role)
-      (let [role "Warrior"]
+      (let [role Warrior]
          role))))
 
+(defn suggest-new-role []
+  (println "What role would you like to play? (Warrior, Priest, Rouge) => ")
+  (if (= "warrior" (.toLowerCase (read-line)))
+    (let [role Warrior]
+      role)
+    (if (= "priest" (.toLowerCase (read-line)))
+      (let [role Priest]
+        role)
+    (if (= "rouge" (.toLowerCase (read-line)))
+      (let [role Rouge]
+        role)))))
+
+
 (defn set-role [role]
-  (println (str "Your suggested role is a " role ". Are you happy with this choice? (y/n) => "))
+  (println (str "Your suggested role is a " (role :role) ". Are you happy with this choice? (y/n) => "))
   (if (= "y" (read-line))
     role
-  (println "Suggest New Role")))
+  (let [role (suggest-new-role)]
+    role)))
 
 (defn -main [& args]
   (let [number (print-questions questions)]
     (let [role (suggest-role number)]
-      (set-role role))))
+      (let [role (set-role role)]
+        (println (str "Your name is " (role :name) ", you are a " (role :role) ", and use a " (role :weapon) "."))))))
