@@ -29,17 +29,23 @@
           0
           questions))
 
-(defn set-role [number]
+(defn suggest-role [number]
   (if (<= number 3)
     (let [role "Priest"]
-      role)
+       role)
     (if (<= number 5)
       (let [role "Rouge"]
-        role)
+         role)
       (let [role "Warrior"]
-        role))))
+         role))))
+
+(defn set-role [role]
+  (println (str "Your suggested role is a " role ". Are you happy with this choice? (y/n) => "))
+  (if (= "y" (read-line))
+    role
+  (println "Suggest New Role")))
 
 (defn -main [& args]
   (let [number (print-questions questions)]
-    (let [role (set-role number)]
-      (println role))))
+    (let [role (suggest-role number)]
+      (set-role role))))
