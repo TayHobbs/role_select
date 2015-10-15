@@ -12,7 +12,7 @@ class Warrior(Role):
         super(Warrior, self).__init__(
             'Brothgar',
             'Warrior',
-            'shield')
+            'sword')
 
 
 class Priest(Role):
