@@ -12,7 +12,7 @@ class Warrior(Role):
         super(Warrior, self).__init__(
             'Brothgar',
             'Warrior',
-            'shield')
+            'sword')
 
 
 class Priest(Role):
@@ -31,3 +31,12 @@ class Rouge(Role):
             'Granzine',
             'Rouge',
             'daggers')
+
+
+class Ranger(Role):
+
+    def __init__(self):
+        super(Ranger, self).__init__(
+            'Scrong',
+            'Ranger',
+            'bow')

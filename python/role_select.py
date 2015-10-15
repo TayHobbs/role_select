@@ -1,4 +1,4 @@
-from roles import Warrior, Rouge, Priest
+from roles import Warrior, Rouge, Priest, Ranger
 
 
 questions = [
@@ -49,6 +49,8 @@ class RoleSelection(object):
     def _suggest_role(self, number):
         if number <= 3:
             role = self._set_role(Priest)
+        if number <= 4:
+            role = self._set_role(Ranger)
         elif number <= 5:
             role = self._set_role(Rouge)
         else:
