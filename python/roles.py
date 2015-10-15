@@ -31,3 +31,12 @@ class Rouge(Role):
             'Granzine',
             'Rouge',
             'daggers')
+
+
+class Ranger(Role):
+
+    def __init__(self):
+        super(Ranger, self).__init__(
+            'Scrong',
+            'Ranger',
+            'bow')
